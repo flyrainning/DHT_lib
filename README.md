@@ -15,30 +15,29 @@ void setup() {
 
 	// load DHT Data pin
 	dht.load(DHT_DATA_pin);
-	
+
 	//取一次
 	String result=dht.get();
-	
 	Serial.println(result);
-	
-	
-	//取平均
-	double d_temperature=0;
-	double d_humidity=0;
+
+	//取温湿度数值
 	double d_temp,d_hum;
-	for (size_t i = 0; i < 10; i++) {
-		dht.get(d_temp,d_hum);
-		d_temperature=(d_temperature + d_temp)/2;
-		d_humidity=(d_humidity + d_hum)/2;
-		delay(1000);
-	}
+	dht.get(d_temp,d_hum);
+	Serial.println(d_temp);
+	Serial.println(d_hum);
+
+	//取平均
+
 	String Data="";
-	Data+=d_temperature;
-	Data+=",";
-	Data+=d_humidity;
-	
+	//取3次平均值，每次间隔1000ms
+	Data=dht.get_a(3,1000);
+	//如果需要单独取数值
+	dht.get_a(d_temp,d_hum,3,1000);
+	Serial.println(d_temp);
+	Serial.println(d_hum);
 	Serial.println(Data);
 
 
 }
+
 ```
