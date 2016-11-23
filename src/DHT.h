@@ -39,11 +39,12 @@ public:
     DHT();
     DHT(int _PIN);
     void load(int _PIN);
+    //取得一次结果
     String get(double &d_w,double &d_s);
     String get();
-
-
-
+    //取得平均结果
+    String get_a(double &d_w,double &d_s,int count,long delay_ms=1000);
+    String get_a(int count,long delay_ms=1000);
 
     // return values:
     // DHTLIB_OK

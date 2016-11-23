@@ -195,6 +195,34 @@ String DHT::get(double &d_w,double &d_s){
      return Data;
 }
 
+String DHT::get_a(double &d_w,double &d_s,int count,long delay_ms){
+  double d_temperature=0;
+  double d_humidity=0;
+  double d_temp,d_hum;
+
+  for (size_t i = 0; i < count; i++) {
+    get(d_temp,d_hum);
+    d_temperature += d_temp;
+    d_humidity += d_hum;
+    delay(delay_ms);
+  }
+  d_w = d_temperature / count;
+  d_s = d_humidity / count;
+
+  String Data="";
+  Data+=d_w;
+  Data+=",";
+  Data+=d_s;
+
+  return Data;
+}
+String DHT::get_a(int count,long delay_ms){
+  double w=0;
+  double s=0;
+  return get_a(w,s,count,delay_ms);
+
+}
+
 //
 // END OF FILE
 //
