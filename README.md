@@ -29,10 +29,10 @@ void setup() {
 	//取平均
 
 	String Data="";
-	//取3次平均值，每次间隔1000ms
-	Data=dht.get_a(3,1000);
+	//取3次平均值，每次间隔3000ms
+	Data=dht.get_a(3,3000);
 	//如果需要单独取数值
-	dht.get_a(d_temp,d_hum,3,1000);
+	dht.get_a(d_temp,d_hum,3,3000);
 	Serial.println(d_temp);
 	Serial.println(d_hum);
 	Serial.println(Data);
